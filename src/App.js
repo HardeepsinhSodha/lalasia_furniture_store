@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { Suspense, lazy } from 'react';
+import { BrowserRouter, Routes, Route, Outlet  } from 'react-router-dom'
+
+import Footer from "./components/footer/Footer"
+import Home from "./components/home/Home"
+const AboutUs = lazy(()=> import("./components/about-us/AboutUs"))
+const Product = lazy(()=> import("./components/product/Product"))
+const ProductDetails = lazy(()=> import("./components/product/ProductDetails"))
+const Services = lazy(()=> import("./components/services/Services"))
+const Article = lazy(()=> import("./components/article/Article"))
+const ArticleDetails = lazy(()=> import('./components/article/ArticleDetails'))
+const Header = lazy(()=> import("./components/header/Header"))
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter basename={process.env.REACT_APP_BASENAME ?? ""}>
+      <Header/>
+        <Suspense
+            fallback={
+              <div>
+                Loading...
+              </div>
+            }
+          >
+          <Routes>
+            <Route path="/" element={<Outlet />}>
+              <Route index element={<Home />} />
+              <Route path="about-us" element={<AboutUs />} />
+              <Route path="product" element={<Product />} />
+              <Route path="product/:id" element={<ProductDetails />} />
+              <Route path="services" element={<Services />} />
+              <Route path="article" element={<Article />} />
+              <Route path="article/:id" element={<ArticleDetails />} />
+            </Route>
+          </Routes>
+        </Suspense>
+      <Footer />
+    </BrowserRouter>
   );
 }
 
