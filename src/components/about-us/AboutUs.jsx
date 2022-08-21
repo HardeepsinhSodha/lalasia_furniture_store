@@ -49,8 +49,8 @@ export default function AboutUs() {
         <P>Pellentesque etiam blandit in tincidunt at donec. Eget ipsum dignissim placerat nisi, adipiscing mauris non purus parturient.</P>
       </div>
 
-      {teamData.map((data) => (
-        <div className='col-span-4 p-4'>
+      {teamData.map((data, index) => (
+        <div className='col-span-4 p-4' key={index}>
           <img src={data.img} alt={data.name} />
           <H as='h3' className='pt-4'>{data.name}</H>
           <P>{data.position}</P>

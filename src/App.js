@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Outlet  } from 'react-router-dom'
 
 import Footer from "./components/footer/Footer"
 import Home from "./components/home/Home"
+import Loader from './components/ui-elements/loader/Loader';
 const AboutUs = lazy(()=> import("./components/about-us/AboutUs"))
 const Product = lazy(()=> import("./components/product/Product"))
 const ProductDetails = lazy(()=> import("./components/product/ProductDetails"))
@@ -17,11 +18,7 @@ function App() {
     <BrowserRouter basename={process.env.REACT_APP_BASENAME ?? ""}>
       <Header/>
         <Suspense
-            fallback={
-              <div>
-                Loading...
-              </div>
-            }
+            fallback={<Loader/>}
           >
           <Routes>
             <Route path="/" element={<Outlet />}>
