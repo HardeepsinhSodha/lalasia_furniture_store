@@ -1,3 +1,6 @@
+## Live Demo
+[https://lalasia-furniture-shop.netlify.app]
+
 ## Goal
 Goal of this project is to convert Figma design into code more specifically using Reactjs and for CSS TailwindCSS with the DaisyUI plugin. Add Dark mode feature. Instead Backend/API all data is stored in data.js file in Json format.
 
